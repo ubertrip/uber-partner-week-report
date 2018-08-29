@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+
+  "name": "Uber Partner Week Report",
+  "description": "Uber Partner Week Report",
+  "version": "0.1",
+  "version_name": "0.1 beta",
+  "author": "GangstaJS",
+  
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+
+  "browser_action": {
+    "default_popup": "index.html"
+  },
+
+  "background": {
+    "scripts": ["/background.build.js"],
+    "persistent": true
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["https://partners.uber.com/*"],
+      "js": ["/content.build.js"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "web_accessible_resources": [
+    "injected.build.js"
+  ],
+
+  "permissions": [
+    "tabs",
+    "<all_urls>","webRequest","webRequestBlocking",
+    "background",
+    "notifications",
+    "cookies",
+    "storage"
+  ]
+}
